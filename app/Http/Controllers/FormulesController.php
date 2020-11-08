@@ -14,7 +14,7 @@ Setup::setPrivateKey(config("services.paydunya.test_private_key"));
 Setup::setToken(config("services.paydunya.test_token"));
 Setup::setMode("services.paydunya.mode"); // Optionnel. Utilisez cette option pour les paiements tests.
 
-Store::setName('Company name');
+Store::setName(config('services.paydunya.company_name'));
 
 class FormulesController extends Controller
 {
@@ -71,6 +71,6 @@ class FormulesController extends Controller
     }
 
     public function cancelPayment(){
-        echo "-------ko";
+        return view('home.canceled');
     }
 }
