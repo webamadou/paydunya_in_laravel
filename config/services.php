@@ -30,7 +30,7 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'paydunya' => [
-        'company_name'        => env('PAYDUNYA_COMPANY_NAME'),
+        'company_name'      => env('PAYDUNYA_COMPANY_NAME'),
         'master_key'        => env('PAYDUNYA_MASTERKEY'),
         'test_public_key'   => env('TEST_PUBLIC_KEY'),
         'test_private_key'  => env('TEST_PRIVATE_KEY'),
