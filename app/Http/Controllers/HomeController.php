@@ -9,11 +9,10 @@ use Paydunya\Paydunya;
 
 class HomeController extends Controller
 {
-    public function index(){
-        //echo config('services.paydunya.master_key');
-        //echo config('services.paydunya.test_public_key');
+    public function index()
+    {
         $formules = Formule::all();
-        //dd($formules);
+
         return view("home.index",compact('formules'));
     }
 

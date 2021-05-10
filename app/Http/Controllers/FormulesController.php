@@ -18,20 +18,18 @@ Store::setName(config('services.paydunya.company_name'));
 
 class FormulesController extends Controller
 {
-    public function purchase(Request $request){
-
-        //dd($request->input());
+    public function purchase(Request $request)
+    {
         $data = $request->validate([
             'price' => 'required|min:3'
         ]);
-        //dd($request->input());
+
         $price = $request->input('price');
         $details = $request->input('name').'-'.$request->input('storage').'-'.$request->input('nbr_user').'-'.$request->input('email_support');
         $invoice = new CheckoutInvoice();
         $invoice->setTotalAmount($price);
         $invoice->addItem($details, 1, $price, $price);
 
-        //dd(route('success_payment'));
         $invoice->setReturnUrl(route('success_payment'));
         $invoice->setCancelUrl(route('cancel_payment'));
         if($invoice->create()) {
@@ -47,10 +45,13 @@ class FormulesController extends Controller
      * This method will handle the return url after payment
      *
      */
-    public function successPayment(){
+    public function successPayment()
+    {
         $token  = $_GET['token'];
         $invoice = new CheckoutInvoice();
-        if ($invoice->confirm($token)) {//we test if we have the right token before saving in the payment table
+
+        //we test if we have the right token before saving in the payment table
+        if ($invoice->confirm($token)) {
             $order_number = md5($token);
             $date_payment = date("Y-m-d H:i:s");
             $user_name = $invoice->getCustomerInfo('name');
